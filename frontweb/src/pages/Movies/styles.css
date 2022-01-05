@@ -1,17 +1,21 @@
 .movies-container {
-  padding: 20px 10px;
+  padding: 20px 0px;
   font-size: 24px;
-  max-width: 1120px;
-  margin: auto;
+}
+
+.movies-row-container {
+  width: 100%;
+  margin: 0;
+}
+
+.movies-card-container {
+  display: flex;
+  justify-content: center;
 }
 
 .title-container h1 {
   color: #fff;
   font-size: 1em;
-}
-
-.list-group {
-  list-style: none;
 }
 
 .list-group a {
@@ -21,15 +25,9 @@
   letter-spacing: -0.015em;
 }
 
-@media (min-width: 576px) {
-  .movies-container {
-    padding: 20px 20px;
-  }
-}
-
 @media (min-width: 768px) {
   .movies-container {
-    padding: 20px 50px;
+    padding: 40px 0px;
   }
 
   .title-container h1 {

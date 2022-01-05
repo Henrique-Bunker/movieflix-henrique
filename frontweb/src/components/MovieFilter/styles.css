@@ -3,10 +3,7 @@
   margin-bottom: 20px;
   background: #6c6c6c;
   border-radius: 4px;
-}
-
-.product-filter-form input {
-  height: 50px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .movie-genre-select__control {
@@ -18,6 +15,8 @@
 
 .movie-genre-select__single-value {
   color: #fff !important;
+  font-size: 16px;
+  letter-spacing: -0.015em;
 }
 
 .movie-genre-select__menu-list {
@@ -38,7 +37,23 @@
 }
 
 @media (min-width: 576px) {
+  .movie-filter-container {
+    margin-bottom: 20px;
+  }
   .product-filter-form {
     width: 260px;
+  }
+}
+
+@media (min-width: 768px) {
+  .movie-filter-container {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .movie-genre-select__control {
+    margin: 15px;
+    height: 50px;
   }
 }

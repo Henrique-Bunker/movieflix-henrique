@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import Select, { NonceProvider } from 'react-select'
+import Select from 'react-select'
 import { Genre } from 'types/Genre'
 import { requestBackend } from 'utils/requests'
 import './styles.css'
@@ -32,12 +32,21 @@ const MovieFilter = ({ onSubmitFilter }: Props) => {
     //onSubmitFilter(obj)
   }
 
-  useEffect(() => {
-    requestBackend({ url: `/genres`, withCredentials: true }).then((result) => {
+  const getGenres = useCallback(async () => {
+    try {
+      const result = await requestBackend({
+        url: `/genres`,
+        withCredentials: true,
+      })
       setSelectGenres(result.data)
-      console.log(selectGenres)
-    })
+    } catch (error) {
+      console.log('ERRO')
+    }
   }, [])
+
+  useEffect(() => {
+    getGenres()
+  }, [getGenres])
 
   const onSubmit = async (formData: ProductFilterData) => {
     //onSubmitFilter(formData)
