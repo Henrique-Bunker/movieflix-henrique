@@ -1,6 +1,8 @@
 .movies-container {
-  padding: 20px;
+  padding: 20px 10px;
   font-size: 24px;
+  max-width: 1120px;
+  margin: auto;
 }
 
 .title-container h1 {
@@ -19,12 +21,24 @@
   letter-spacing: -0.015em;
 }
 
+@media (min-width: 576px) {
+  .movies-container {
+    padding: 20px 20px;
+  }
+}
+
 @media (min-width: 768px) {
   .movies-container {
-    padding: 50px;
+    padding: 20px 50px;
   }
 
   .title-container h1 {
     font-size: 2em;
+  }
+}
+
+@media (min-width: 1400px) {
+  .movies-container {
+    max-width: 1120px;
   }
 }
