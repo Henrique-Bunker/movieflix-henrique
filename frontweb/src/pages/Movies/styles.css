@@ -1,0 +1,30 @@
+.movies-container {
+  padding: 20px;
+  font-size: 24px;
+}
+
+.title-container h1 {
+  color: #fff;
+  font-size: 1em;
+}
+
+.list-group {
+  list-style: none;
+}
+
+.list-group a {
+  font-size: 0.8em;
+  text-decoration: none;
+  color: #fff;
+  letter-spacing: -0.015em;
+}
+
+@media (min-width: 768px) {
+  .movies-container {
+    padding: 50px;
+  }
+
+  .title-container h1 {
+    font-size: 2em;
+  }
+}

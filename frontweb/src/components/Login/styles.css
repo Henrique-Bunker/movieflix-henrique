@@ -1,0 +1,76 @@
+.login-card {
+  padding: 20px;
+  font-size: 16px;
+}
+
+.base-input,
+.base-input:focus {
+  background-color: #fff;
+  height: 50px;
+}
+
+.login-card h1 {
+  font-weight: normal;
+  font-size: 2.5em;
+  text-align: center;
+  letter-spacing: -0.015em;
+  color: #fff;
+  text-transform: uppercase;
+  margin-top: 50px;
+  margin-bottom: 45px;
+}
+
+.login-submit {
+  margin-bottom: 10px;
+  margin-top: 40px;
+  width: 100%;
+  height: 50px;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+}
+
+.login-submit button {
+  width: 100%;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  font-size: 1.5em;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-registered {
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  letter-spacing: -0.015em;
+  color: #9e9e9e;
+}
+
+.signup-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 576px) {
+  .login-card {
+    padding: 50px;
+  }
+
+  .login-submit {
+    margin-top: 70px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .base-input {
+    width: 100%;
+  }
+
+  .login-submit {
+    margin-top: 70px;
+    width: 100%;
+    height: 65px;
+  }
+}
