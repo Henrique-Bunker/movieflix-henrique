@@ -3,9 +3,11 @@ import CardReview from 'components/CardReview'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
+import { Movie } from 'types/Movie'
 import { MovieReview } from 'types/MovieReview'
 import { hasAnyRoles } from 'utils/auth'
 import { requestBackend } from 'utils/requests'
+import MovieDetailsCard from './MovieDetailCard/MovieDetailCard'
 import './styles.css'
 
 type UrlParams = {
@@ -23,7 +25,9 @@ type FormReview = {
 
 const MovieDetails = () => {
   const { movieId } = useParams<UrlParams>()
+  const [movie, setMovie] = useState<Movie>()
   const [movieReviews, setMovieReviews] = useState<MovieReview[]>()
+  const [hasReviews, setHasReviews] = useState(false)
   const [review, setReview] = useState<string>()
   const [hasError, setHasError] = useState(false)
   const {
@@ -31,6 +35,17 @@ const MovieDetails = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>()
+
+  useEffect(() => {
+    const params: AxiosRequestConfig = {
+      url: `/movies/${movieId}`,
+      withCredentials: true,
+    }
+
+    requestBackend(params).then((response) => {
+      setMovie(response.data)
+    })
+  }, [movieId])
 
   const handleReviewText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReview(event.target.value)
@@ -69,16 +84,18 @@ const MovieDetails = () => {
       withCredentials: true,
     }
 
-    requestBackend(params).then((response) => {
-      setMovieReviews(response.data)
-    })
-  }, [movieId])
+    requestBackend(params)
+      .then((response) => {
+        setMovieReviews(response.data)
+      })
+      .finally(() => {
+        movieReviews && setHasReviews(movieReviews.length > 0)
+      })
+  }, [movieId, movieReviews])
 
   return (
     <div className="movie-details-container">
-      <div className="title-container mb-4">
-        <h1>Tela detalhes do filme id: {movieId}</h1>
-      </div>
+      {movie && <MovieDetailsCard movie={movie} />}
       {hasAnyRoles(['ROLE_MEMBER']) && (
         <div className="post-review-container">
           <form
@@ -114,16 +131,18 @@ const MovieDetails = () => {
         </div>
       )}
 
-      <div className="list-review-container">
-        <ul>
-          {movieReviews &&
-            movieReviews.map((review) => (
-              <li key={review.id}>
-                <CardReview reviewData={review} />
-              </li>
-            ))}
-        </ul>
-      </div>
+      {hasReviews && (
+        <div className="list-review-container">
+          <ul>
+            {movieReviews &&
+              movieReviews.map((review) => (
+                <li key={review.id}>
+                  <CardReview reviewData={review} />
+                </li>
+              ))}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }

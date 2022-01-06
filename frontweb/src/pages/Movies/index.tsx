@@ -75,7 +75,9 @@ const Movies = () => {
             className="col-sm-6 col-xl-3 px-lg-4 px-xl-2 mb-4 mb-lg-5 movies-card-container"
             key={movie.id}
           >
-            <MovieListCard movie={movie} />
+            <Link to={`/movies/${movie.id}`}>
+              <MovieListCard movie={movie} />
+            </Link>
           </div>
         ))}
       </div>

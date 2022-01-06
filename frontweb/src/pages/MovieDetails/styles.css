@@ -56,3 +56,11 @@
     max-width: 300px;
   }
 }
+
+@media (min-width: 1400px) {
+  .movie-details-container {
+    padding: 50px 130px;
+    max-width: 1460px;
+    margin: auto;
+  }
+}
