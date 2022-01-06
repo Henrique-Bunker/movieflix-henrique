@@ -76,7 +76,6 @@ const MovieFilter = ({ onSubmitFilter }: Props) => {
                 onChange={(value) => handleChangeGenre(value as Genre)}
                 getOptionLabel={(genre: Genre) => genre.name}
                 getOptionValue={(genre: Genre) => String(genre.id)}
-                isSearchable
               />
             )}
           />

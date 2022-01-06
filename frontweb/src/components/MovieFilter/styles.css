@@ -7,7 +7,7 @@
 }
 
 .movie-genre-select__control {
-  font-size: 1em;
+  font-size: 16px;
   letter-spacing: -0.015em;
   background-color: #6c6c6c !important;
   border-bottom: 1px solid #e1e1e1 !important;
@@ -21,6 +21,7 @@
 
 .movie-genre-select__menu-list {
   color: #fff;
+  font-size: 16px;
   background-color: #6c6c6c;
 }
 
