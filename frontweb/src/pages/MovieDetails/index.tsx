@@ -8,6 +8,7 @@ import { MovieReview } from 'types/MovieReview'
 import { hasAnyRoles } from 'utils/auth'
 import { requestBackend } from 'utils/requests'
 import MovieDetailsCard from './MovieDetailCard/MovieDetailCard'
+import { toast } from 'react-toastify'
 import './styles.css'
 
 type UrlParams = {
@@ -71,10 +72,11 @@ const MovieDetails = () => {
 
       newReviews?.push(buildReviews)
       setMovieReviews(newReviews)
-
       setHasError(false)
+      toast.success('Avaliação enviada com sucesso!')
     } catch (error) {
       setHasError(true)
+      toast.error('Ouch!!! Algo deu errado')
     }
   }
 
@@ -102,10 +104,20 @@ const MovieDetails = () => {
             onSubmit={handleSubmit(handleSubmitReview)}
             className="form-review"
           >
+            {hasError && (
+              <div className="alert alert-danger">
+                Favor enviar uma mensagem valida
+              </div>
+            )}
             <div className="mb-2">
               <textarea
                 {...register('review', {
                   required: 'Campo obrigatorio',
+                  validate: (value) => {
+                    !value.trim() && setHasError(true)
+
+                    return !!value.trim()
+                  },
                 })}
                 className={`form-control base-input ${
                   errors.review ? 'is-invalid' : ''
@@ -116,11 +128,6 @@ const MovieDetails = () => {
                 onChange={handleReviewText}
               ></textarea>
             </div>
-            {hasError && (
-              <div className="alert alert-danger">
-                Erro ao tentar efetuar o login
-              </div>
-            )}
             <div className="invalid-feedback d-block">
               {errors.review?.message}
             </div>
