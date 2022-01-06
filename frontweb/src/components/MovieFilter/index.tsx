@@ -10,7 +10,7 @@ export type ProductFilterData = {
 }
 
 type Props = {
-  onSubmitFilter?: (data: ProductFilterData) => void
+  onSubmitFilter: (data: ProductFilterData) => void
 }
 
 const MovieFilter = ({ onSubmitFilter }: Props) => {
@@ -29,7 +29,7 @@ const MovieFilter = ({ onSubmitFilter }: Props) => {
       genre: getValues('genre'),
     }
 
-    //onSubmitFilter(obj)
+    onSubmitFilter(obj)
   }
 
   const getGenres = useCallback(async () => {
